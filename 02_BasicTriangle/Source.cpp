@@ -1,17 +1,7 @@
 #include <windows.h>
 #include <stdio.h> // for FILE I/O
 
-//#include <gl\glew.h>
 
-//#include <gl/GL.h>
-
-
-//#include "vmath.h"
-
-//#pragma comment(lib,"glew32.lib")
-//#pragma comment(lib,"opengl32.lib")
-
-//using namespace vmath;
 #include "vk_engine.h"
 enum
 {
@@ -20,8 +10,6 @@ enum
 	MALATI_ATTRIBUTE_NORMAL,
 	MALATI_ATTRIBUTE_TEXTURE
 };
-
-
 
 
 
@@ -45,19 +33,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 	
 	bool bDone = false;
 
-	//code
-	// create log file
-	/*if (fopen_s(&gpFile, "Log.txt", "w") != 0)
-	{
-		MessageBox(NULL, TEXT("Log File Can Not Be Created\nExitting ..."), TEXT("Error"), MB_OK | MB_TOPMOST | MB_ICONSTOP);
-		exit(0);
-	}
-	else
-	{
-		fprintf(gpFile, "Log File Is Successfully Opened.\n");
-	}*/
-
-	
 	
 	vk_engine.init(hInstance, iCmdShow);
 
@@ -79,37 +54,22 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpszCmdLi
 		else
 		{
 			// rendring function
-			fopen_s(&vk_engine.gpFile, "Log.txt", "a+");
-			fprintf(vk_engine.gpFile, "after run command game loop vulkan0\n");
-			fclose(vk_engine.gpFile);
-
+		
 			vk_engine.run();
 
-
-			fopen_s(&vk_engine.gpFile, "Log.txt", "a+");
-			fprintf(vk_engine.gpFile, "after run command game loop vulkan\n");
-			fclose(vk_engine.gpFile);
 
 			if (gbActiveWindow == true)
 			{
 				if (gbEscapeKeyIsPressed == true) //Continuation to glutLeaveMainLoop();
 				{
 					bDone = true;
-					fopen_s(&vk_engine.gpFile, "Log.txt", "a+");
-					fprintf(vk_engine.gpFile, "after run command game loop vulkan2\n");
-					fclose(vk_engine.gpFile);
+					
 				}
 			}
 
-			fopen_s(&vk_engine.gpFile, "Log.txt", "a+");
-			fprintf(vk_engine.gpFile, "after run command game loop vulkan1\n");
-			fclose(vk_engine.gpFile);
 		}
 	}
 
-	fopen_s(&vk_engine.gpFile, "Log.txt", "a+");
-	fprintf(vk_engine.gpFile, "after game loop vulkan\n");
-	fclose(vk_engine.gpFile);
 
 	//all operation in draw are asynch, it means we exit from main loop, drawing and presentation may still be going on.
 	//first wait for the logical device to finish operations before exiting. and destroy the window
@@ -174,12 +134,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 
 		vkDeviceWaitIdle(vk_engine.m_device); //to avoid this : vkDestroySemaphore on VkSemaphore 0x9fde6b0000000014[] that is currently in use by a command buffer.
 		vk_engine.cleanup(); //Parallel to glutCloseFunc(uninitialize);
-		/*if (gpFile)
-		{
-			fprintf(gpFile, "Log File Is Successfully Closed.\n");
-			fclose(gpFile);
-			gpFile = NULL;
-		}*/
+		
 		break;
 	case WM_DESTROY:
 		PostQuitMessage(0);
