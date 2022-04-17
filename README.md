@@ -8,4 +8,4 @@ References : https://vulkan-tutorial.com/
 
 2. Basic Triangle
 
-![Alt Text](https://github.com/pournimap/Vulkan/blob/main/01_Blue_Screen/BasicTriangle.png)
+![Alt Text](https://github.com/pournimap/Vulkan/blob/main/02_BasicTriangle/BasicTriangle.png)
