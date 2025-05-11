@@ -127,6 +127,11 @@
       <AdditionalLibraryDirectories>$(VULKAN_SDK)\Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;vulkan-1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>glslc.exe shaders/ray-closest-hit.rchit -o shaders/ray-closest-hit.spv --target-spv=spv1.6
+glslc.exe shaders/ray-generation.rgen -o shaders/ray-generation.spv --target-spv=spv1.6
+glslc.exe shaders/ray-miss.rmiss -o shaders/ray-miss.spv --target-spv=spv1.6</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -146,6 +151,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>glslc.exe shaders/ray-closest-hit.rchit -o shaders/ray-closest-hit.spv --target-spv=spv1.6
+glslc.exe shaders/ray-generation.rgen -o shaders/ray-generation.spv --target-spv=spv1.6
+glslc.exe shaders/ray-miss.rmiss -o shaders/ray-miss.spv --target-spv=spv1.6</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp" />
